@@ -104,4 +104,5 @@ vsce package
 
 # HIZLI-BASLANGIC.md - Basitleştirilmiş rehber
 # README.md - Detaylı dokümantasyon
-# SETUP.md - Kurulum ve kullanım rehberi
+# SETUP.md - Kurulum ve kullanım rehberi  
+
