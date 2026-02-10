@@ -1,0 +1,31 @@
+# VS Code ile GitHub'a Yükleme Rehberi
+# ======================================
+
+# VS CODE'DA ADIM ADIM:
+
+# 1. Sol menüden "Source Control" ikonuna tıklayın (Ctrl+Shift+G)
+#    (Dallanma simgesi)
+
+# 2. "Publish to GitHub" butonuna tıklayın
+
+# 3. GitHub'a giriş yapın (vs code sizi yönlendirir)
+
+# 4. Repository ismini verin: copilot-stats-tracker
+
+# 5. "Public" veya "Private" seçin
+
+# 6. Dosyaları seçin (hepsini seçin, sadece node_modules hariç)
+
+# 7. "Publish" tıklayın
+
+# ✅ TAMAMLANDI! GitHub'da repository oluştu.
+
+# ======================================
+
+# SONRA: GitHub Actions ile Otomatik Derleme
+
+# Repository'de .github/workflows klasörü oluşturun
+# build.yml dosyası ekleyin (aşağıdaki içerikle)
+
+# Bu sayede her push'ta otomatik olarak VSIX oluşur!
+# Artifacts bölümünden indirebilirsiniz.

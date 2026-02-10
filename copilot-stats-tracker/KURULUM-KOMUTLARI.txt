@@ -1,0 +1,107 @@
+# ===========================================
+# Copilot Stats Tracker - Kullanım Talimatı
+# ===========================================
+
+# ⚠️ ÖNEMLİ: Bu extension Node.js GEREKTIRMEZ!
+# VS Code'un kendi runtime'ını kullanır.
+
+# ===========================================
+# 1. KURULUM (Ekip Üyeleri İçin)
+# ===========================================
+
+# VS Code'da:
+# 1. Ctrl+Shift+P
+# 2. "Extensions: Install from VSIX" yazın
+# 3. copilot-stats-tracker-X.X.X.vsix dosyasını seçin
+# 4. VS Code'u yeniden başlatın
+
+# ✅ Kurulum tamamlandı! Node.js gerektirmez.
+
+# ===========================================
+# 2. AYARLAR (Settings.json)
+# ===========================================
+
+# Kullanıcı adınızı ayarlayın:
+{
+  "copilotStatsTracker.userName": "ahmet.y"
+}
+
+# Paylaşılan klasör kullanmak için:
+{
+  "copilotStatsTracker.logFilePath": "\\\\sunucu\\paylaşım\\copilot-logs",
+  "copilotStatsTracker.userName": "ahmet.y"
+}
+
+# ===========================================
+# 3. KOMUTLAR (Ctrl+Shift+P)
+# ===========================================
+
+# Bireysel istatistikler:
+Copilot Stats: İstatistikleri Göster
+Copilot Stats: Log Dosyasını Aç
+Copilot Stats: İstatistikleri Sıfırla
+
+# Ekip istatistikleri (Node.js gerektirmez!):
+Copilot Stats: Ekip Raporu Göster
+Copilot Stats: Özel Klasörde Ekip Raporu
+Copilot Stats: Ekip Raporunu Dışa Aktar
+
+# ===========================================
+# 4. LOG DOSYALARI
+# ===========================================
+
+# Varsayılan konum: Workspace root klasörü
+# - copilot-stats.txt (detaylı loglar)
+# - copilot-daily-stats.json (günlük özetler)
+
+# ===========================================
+# 5. VSIX OLUŞTURMA (Sadece Ekip Liderleri)
+# ===========================================
+
+# ⚠️ Bu adım için Node.js gereklidir!
+# Ekip üyeleri için GEREKTIRMEZ.
+
+# VSIX oluşturmak için:
+cd "c:\Users\S_SEMERCI\Desktop\Çalışmalar\AIMtr\copilot-stats-tracker"
+npm install
+npm run compile
+npm install -g @vscode/vsce
+vsce package
+
+# Çıktı: copilot-stats-tracker-1.0.0.vsix
+# Bu dosyayı ekiple paylaşın!
+
+# ===========================================
+# 6. EKİP RAPORU GÖRÜNTÜLEME
+# ===========================================
+
+# Workspace'inizdeki tüm logları görmek için:
+# Ctrl+Shift+P → "Copilot Stats: Ekip Raporu Göster"
+
+# Paylaşılan klasördeki logları görmek için:
+# Ctrl+Shift+P → "Copilot Stats: Özel Klasörde Ekip Raporu"
+# Sonra: \\sunucu\paylaşım\copilot-logs seçin
+
+# ===========================================
+# 7. SORUN GİDERME
+# ===========================================
+
+# Extension çalışmıyor:
+# - VS Code'u yeniden başlatın
+# - Output panelinde (Ctrl+Shift+U) "Extension Host" seçin
+
+# Log dosyası bulunamıyor:
+# - Workspace klasörünüzü kontrol edin
+# - Settings'de logFilePath'i kontrol edin
+
+# Ekip raporu boş:
+# - En az bir kod değişikliği yapın
+# - copilot-daily-stats.json dosyasının varlığını kontrol edin
+
+# ===========================================
+# 8. DAHA FAZLA BİLGİ
+# ===========================================
+
+# HIZLI-BASLANGIC.md - Basitleştirilmiş rehber
+# README.md - Detaylı dokümantasyon
+# SETUP.md - Kurulum ve kullanım rehberi

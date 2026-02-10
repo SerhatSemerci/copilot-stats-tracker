@@ -1,0 +1,72 @@
+{
+  "name": "copilot-stats-tracker",
+  "displayName": "Copilot Stats Tracker",
+  "description": "GitHub Copilot kullanımını takip eder ve lokal dosyaya loglar",
+  "version": "1.0.0",
+  "publisher": "aimtr",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "copilot-stats-tracker.showStats",
+        "title": "Copilot Stats: İstatistikleri Göster"
+      },
+      {
+        "command": "copilot-stats-tracker.resetStats",
+        "title": "Copilot Stats: İstatistikleri Sıfırla"
+      },
+      {
+        "command": "copilot-stats-tracker.openLogFile",
+        "title": "Copilot Stats: Log Dosyasını Aç"
+      },
+      {
+        "command": "copilot-stats-tracker.showTeamReport",
+        "title": "Copilot Stats: Ekip Raporu Göster"
+      },
+      {
+        "command": "copilot-stats-tracker.exportTeamReport",
+        "title": "Copilot Stats: Ekip Raporunu Dışa Aktar (JSON)"
+      },
+      {
+        "command": "copilot-stats-tracker.showTeamReportCustom",
+        "title": "Copilot Stats: Özel Klasörde Ekip Raporu"
+      }
+    ],
+    "configuration": {
+      "title": "Copilot Stats Tracker",
+      "properties": {
+        "copilotStatsTracker.logFilePath": {
+          "type": "string",
+          "default": "",
+          "description": "Log dosyasının kaydedileceği özel yol (boş bırakılırsa workspace root kullanılır)"
+        },
+        "copilotStatsTracker.userName": {
+          "type": "string",
+          "default": "",
+          "description": "Logda görünecek kullanıcı adı"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}

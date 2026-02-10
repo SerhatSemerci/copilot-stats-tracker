@@ -1,0 +1,47 @@
+# Portable Node.js ile Derleme Rehberi
+# =====================================
+
+# ADIM 1: Portable Node.js İndirin
+# ---------------------------------
+# https://nodejs.org/en/download/
+# "Windows Binary (.zip)" seçeneğini indirin
+# Örnek: node-v20.11.0-win-x64.zip
+
+# ADIM 2: Zip'i Ayıklayın
+# -----------------------
+# Zip dosyasını masaüstü veya belgeler klasörüne çıkarın
+# Örnek konum: C:\Users\S_SEMERCI\Desktop\node-portable
+
+# ADIM 3: Bu PowerShell Komutlarını Çalıştırın
+# ---------------------------------------------
+
+# Node.js'in bulunduğu klasöre gidin (kendi yolunuzu yazın)
+$NODE_PATH = "C:\Users\S_SEMERCI\Desktop\node-portable"
+
+# PATH'e ekleyin (geçici olarak, kapanınca silinir)
+$env:Path = "$NODE_PATH;$env:Path"
+
+# Kontrol edin
+node --version
+npm --version
+
+# Extension klasörüne gidin
+cd "c:\Users\S_SEMERCI\Desktop\Çalışmalar\AIMtr\copilot-stats-tracker"
+
+# Bağımlılıkları yükleyin
+npm install
+
+# Derleyin
+npm run compile
+
+# VSIX oluşturun
+npm install -g @vscode/vsce
+vsce package
+
+# =====================================
+# SONUÇ: copilot-stats-tracker-1.0.0.vsix dosyası oluşacak
+# =====================================
+
+# Not: Portable Node.js kalıcı kurulum değildir,
+# sadece o klasörde durur, sistem kayıt defterini değiştirmez.
+# Şirket IT politikalarına uygun olabilir.

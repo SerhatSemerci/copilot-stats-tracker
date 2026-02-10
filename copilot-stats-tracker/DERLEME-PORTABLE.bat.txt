@@ -1,0 +1,134 @@
+@echo off
+REM Portable Node.js ile Derleme Scripti
+REM =====================================
+REM 
+REM KULLANIM:
+REM 1. Node.js portable zip'i indirin: https://nodejs.org/en/download/
+REM 2. Zip'i bir klasore cikarin (ornek: C:\Users\S_SEMERCI\Desktop\node-portable)
+REM 3. Asagidaki NODE_PORTABLE_PATH degiskenini duzenleyin
+REM 4. Bu batch dosyasini calistirin
+REM
+
+REM ===== BURASI DUZENLENMELI =====
+SET NODE_PORTABLE_PATH=C:\Users\S_SEMERCI\Desktop\node-portable
+REM ================================
+
+echo.
+echo ==========================================
+echo   Portable Node.js Kontrol Ediliyor...
+echo ==========================================
+echo.
+
+if not exist "%NODE_PORTABLE_PATH%" (
+    echo [HATA] Node.js portable klasoru bulunamadi!
+    echo Lutfen NODE_PORTABLE_PATH degiskenini duzenleyin.
+    echo Mevcut deger: %NODE_PORTABLE_PATH%
+    echo.
+    pause
+    exit /b 1
+)
+
+if not exist "%NODE_PORTABLE_PATH%\node.exe" (
+    echo [HATA] node.exe bulunamadi!
+    echo %NODE_PORTABLE_PATH% klasorunu kontrol edin.
+    echo.
+    pause
+    exit /b 1
+)
+
+echo [OK] Portable Node.js bulundu: %NODE_PORTABLE_PATH%
+
+REM PATH'e ekle (gecici)
+SET PATH=%NODE_PORTABLE_PATH%;%PATH%
+
+REM Versiyonlari goster
+echo.
+echo Node.js versiyonu:
+node --version
+
+echo.
+echo npm versiyonu:
+npm --version
+
+echo.
+echo ==========================================
+echo   Bagimliliklari Yukluyor...
+echo ==========================================
+echo.
+
+call npm install
+
+if %errorlevel% neq 0 (
+    echo.
+    echo [HATA] npm install basarisiz!
+    pause
+    exit /b 1
+)
+
+echo.
+echo [OK] Bagimliliklar yuklendi
+echo.
+
+echo ==========================================
+echo   TypeScript Derleniyor...
+echo ==========================================
+echo.
+
+call npm run compile
+
+if %errorlevel% neq 0 (
+    echo.
+    echo [HATA] Derleme basarisiz!
+    pause
+    exit /b 1
+)
+
+echo.
+echo [OK] Derleme tamamlandi
+echo.
+
+echo ==========================================
+echo   VSIX Paketi Olusturuluyor...
+echo ==========================================
+echo.
+
+REM vsce yuklu mu kontrol et
+call npm list -g @vscode/vsce >nul 2>&1
+if %errorlevel% neq 0 (
+    echo vsce kurulu degil, yukluyor...
+    call npm install -g @vscode/vsce
+)
+
+call vsce package
+
+if %errorlevel% neq 0 (
+    echo.
+    echo [UYARI] VSIX olusturulamadi!
+    echo Ancak extension F5 ile test edilebilir.
+    echo.
+) else (
+    echo.
+    echo ==========================================
+    echo   BASARILI! VSIX Olusturuldu
+    echo ==========================================
+    echo.
+    dir /b *.vsix
+    echo.
+)
+
+echo.
+echo ==========================================
+echo   Islem Tamamlandi!
+echo ==========================================
+echo.
+echo Sonraki adimlar:
+echo.
+echo 1. VSIX dosyasini VS Code'a yukleyin:
+echo    - Ctrl+Shift+P
+echo    - "Extensions: Install from VSIX"
+echo.
+echo 2. VEYA F5 ile test edin:
+echo    - Bu klasoru VS Code'da acin
+echo    - F5'e basin
+echo.
+pause
